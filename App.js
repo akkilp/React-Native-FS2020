@@ -6,7 +6,7 @@ import Main from './src/components/Main';
 const App = () => {
   return (
     <NativeRouter>
-      <Main />;
+      <Main />
     </NativeRouter>
   );
 };
