@@ -1,59 +1,54 @@
-import React from 'react';
-import { View, StyleSheet, TouchableWithoutFeedback } from 'react-native';
+import React from "react";
+import { StyleSheet, Text, View, TouchableWithoutFeedback, ScrollView } from "react-native";
 import Constants from 'expo-constants';
 
-import { Link } from "react-router-native";
-
-
-import Text from './Text';
+import { Link} from "react-router-native";
 import theme from '../theme';
 
-
 const styles = StyleSheet.create({
-  container: {
-    paddingTop: Constants.statusBarHeight,
-    backgroundColor: theme.colors.primary,
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center'
-  },
-  NavHeader: {
-      padding: theme.paddings.headerPadding,
-      flexGrow: 1
-  },
-  NavItems: {
-      flexGrow: 0,
-  }
-});
+    container: {
+      paddingTop: Constants.statusBarHeight,
+      backgroundColor: theme.colors.primary,
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between'
+    },
+    NavHeader: {
+        padding: theme.paddings.headerPadding,
+        flexGrow: 1
+    },
+    navItem: {
+        flexGrow: 0,
+        padding: theme.paddings.itemPadding,
+        borderRadius: 5,
+        backgroundColor: theme.colors.effect
+    },
+    navItemContainer: {
+        display: 'flex',
+        flexDirection: 'row',
+        alignSelf: "center",
+    }
+  });
 
-const TouchableText = props => {
-  return (
-    <TouchableWithoutFeedback
-      onPress={() => console.log}
-    >
-      <Text>Sign In</Text>
-    </TouchableWithoutFeedback>
-  );
-};
 
 const AppBar = () => {
-
-  return (
-    <View style={styles.container}>
-        <View style={styles.NavHeader}>
-            <Text 
-            color='textSecondary' 
-            fontWeight="bold" 
-            fontSize="subheading"
-            >
-                Reposotories
-            </Text>  
+    return (
+        <View style={styles.container}>
+            <ScrollView horizontal>
+                <View style={styles.NavHeader}>
+                    <Link to="/" component={TouchableWithoutFeedback}>
+                        <Text>Reposotories</Text>
+                    </Link>
+                </View>
+                <View style={styles.navItemContainer}>
+                    <Link to="/signin" component={TouchableWithoutFeedback}>
+                        <Text style={styles.navItem}>SignIn</Text>
+                    </Link>
+                </View> 
+            </ScrollView>
         </View>
-        <View style={styles.NavItems}>
-          <Link to="/signin" component={TouchableText}/>
-        </View>
-    </View>
-  );
-};
+    );
+  };
 
 export default AppBar;

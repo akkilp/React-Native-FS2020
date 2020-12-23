@@ -1,12 +1,13 @@
 import React from 'react';
-import { Route, Switch, Redirect } from 'react-router-native';
+import { Route, Switch, Redirect, Link } from 'react-router-native';
 
 import Constants from 'expo-constants';
 import { StyleSheet, View } from 'react-native';
 import RepositoryList from './RepositoryList';
-import AppBar from './AppBar';
 import SignIn from './SignIn';
 import theme from '../theme';
+import AppBar from './AppBar';
+
 
 const styles = StyleSheet.create({
   container: {
@@ -18,27 +19,16 @@ const styles = StyleSheet.create({
   },
 });
 
-const TouchableText = props => {
-  return (
-    <TouchableWithoutFeedback
-      onPress={() => console.log('juuh')}
-    >
-      <Text>Sign In</Text>
-    </TouchableWithoutFeedback>
-  );
-};
 
 const Main = () => {
   return (
     <View style={styles.container}>
-        <AppBar/>
-        <Switch>
-          <Route exact path="/" component={SignIn} />
-          <Route exact path="/signin" component={RepositoryList} />
-          <Redirect to="/"/>
-        </Switch>
-        <Link to='/signin' component={TouchableText}/>
-
+      <AppBar/>
+      <Switch>
+        <Route exact path="/signin" component={SignIn} />
+        <Route exact path="/" component={RepositoryList} />
+        <Redirect to="/"/>
+      </Switch> 
     </View>
   );
 };
