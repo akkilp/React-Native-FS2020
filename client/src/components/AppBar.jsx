@@ -1,9 +1,14 @@
 import React from "react";
-import { StyleSheet, Text, View, TouchableWithoutFeedback, ScrollView } from "react-native";
+import { StyleSheet, View, ScrollView, Pressable,TouchableWithoutFeedback } from "react-native";
+import Text from './Text'
 import Constants from 'expo-constants';
 
 import { Link} from "react-router-native";
-import theme from '../theme';
+import theme from '../utils/theme';
+
+import { useApolloClient } from '@apollo/client';
+import useIsAuthorized from '../hooks/useIsAuthorized'
+import useLogOut from '../hooks/useLogOut'
 
 const styles = StyleSheet.create({
     container: {
@@ -28,23 +33,49 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         alignSelf: "center",
-    }
+    },
+    
   });
 
 
 const AppBar = () => {
+    const [logOut] = useLogOut();
+    const {isAuthorized} = useIsAuthorized();
+    const client = useApolloClient();
+    
+    const handleLogOut = () => {
+        logOut()
+        client.resetStore()
+    }
+    const SignIn = () => {
+        return(
+            <Link to="/signin" component={TouchableWithoutFeedback}>
+                <Text style={styles.navItem}>SignIn</Text>
+            </Link>
+        )
+    } 
+ 
+    const SignOut = () => {
+        
+        return(
+            <TouchableWithoutFeedback onPress={handleLogOut}>
+                <Text color='secondaryColor' style={styles.navItem}>
+                    Sign out
+                </Text>
+            </TouchableWithoutFeedback>
+        )
+    }
+
     return (
         <View style={styles.container}>
-            <ScrollView horizontal>
+            <ScrollView  horizontal>
                 <View style={styles.NavHeader}>
                     <Link to="/" component={TouchableWithoutFeedback}>
-                        <Text>Reposotories</Text>
-                    </Link>
+                        <Text>Repositories</Text>
+                    </Link>                
                 </View>
                 <View style={styles.navItemContainer}>
-                    <Link to="/signin" component={TouchableWithoutFeedback}>
-                        <Text style={styles.navItem}>SignIn</Text>
-                    </Link>
+                    {isAuthorized ? <SignOut/> : <SignIn/>}
                 </View> 
             </ScrollView>
         </View>

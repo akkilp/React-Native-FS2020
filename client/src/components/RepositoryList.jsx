@@ -1,7 +1,10 @@
 import React from 'react';
-import { FlatList, View, StyleSheet} from 'react-native';
-import theme from '../theme';
+import { FlatList, View, StyleSheet, ActivityIndicator} from 'react-native';
+import theme from '../utils/theme';
 import RepositoryItem from './RepositoryItem';
+
+import useRepositories from '../hooks/useRepositories'
+import Text from './Text'
 
 const styles = StyleSheet.create({
   container: {
@@ -11,6 +14,12 @@ const styles = StyleSheet.create({
   separator: {
     height: theme.gaps.itemGap
   },
+  loading: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingTop: '20%'
+  }
 });
 
 
@@ -19,33 +28,14 @@ const renderItem = ({ item }) => <RepositoryItem data={item}/>;
 
 
 const RepositoryList = () => {
-  const [repositories, setRepositories] = React.useState();
-
-  const fetchRepositories = async () => {
-    try{
-
-      const url = 'http://192.168.43.6:5000/api/repositories'
-      const response = await fetch(url);
-      const json = await response.json();
-      
-      console.log(json);
-      
-      setRepositories(json);
-    } catch(e){
-      console.log('vituiks meni', e)
-    }
-  };
-
-  React.useEffect(() => {
-    fetchRepositories();
-  }, []);
+  const {repositories, loading} = useRepositories();
 
   const repositoryNodes = repositories
   ? repositories.edges.map(edge => edge.node)
   : [];
 
-
-    
+  if (loading) return <View style={styles.loading}><ActivityIndicator size='large'/></View>
+  
   return (
     <FlatList
       data={repositoryNodes}

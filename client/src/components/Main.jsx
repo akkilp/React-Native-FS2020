@@ -5,7 +5,7 @@ import Constants from 'expo-constants';
 import { StyleSheet, View } from 'react-native';
 import RepositoryList from './RepositoryList';
 import SignIn from './SignIn';
-import theme from '../theme';
+import theme from '../utils/theme';
 import AppBar from './AppBar';
 
 

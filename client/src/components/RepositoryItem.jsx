@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, Image } from 'react-native';
-import theme from '../theme';
+import theme from '../utils/theme';
 import StatItem from './StatItem';
 import Text from './Text';
 
@@ -49,7 +49,8 @@ const styles = StyleSheet.create({
 });
 
 const RepositoryItem = ({data}) => {
-  const {fullName, 
+  const {
+        fullName, 
         description, 
         language, 
         stargazersCount: stars, 
@@ -58,6 +59,7 @@ const RepositoryItem = ({data}) => {
         ratingAverage: rating,
         ownerAvatarUrl: url,
         } = data;
+
   return (
     <View style={styles.itemContainer}>
       <View style={styles.upperContainer}>
