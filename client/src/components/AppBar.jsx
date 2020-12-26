@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         alignSelf: "center",
+        paddingRight: 20,
     },
     
   });
@@ -50,7 +51,7 @@ const AppBar = () => {
     const SignIn = () => {
         return(
             <Link to="/signin" component={TouchableWithoutFeedback}>
-                <Text style={styles.navItem}>SignIn</Text>
+                <Text color="textSecondary" style={styles.navItem}>Sign In</Text>
             </Link>
         )
     } 
@@ -59,7 +60,7 @@ const AppBar = () => {
         
         return(
             <TouchableWithoutFeedback onPress={handleLogOut}>
-                <Text color='secondaryColor' style={styles.navItem}>
+                <Text color="textSecondary" style={styles.navItem}>
                     Sign out
                 </Text>
             </TouchableWithoutFeedback>
@@ -68,10 +69,15 @@ const AppBar = () => {
 
     return (
         <View style={styles.container}>
-            <ScrollView  horizontal>
+            <ScrollView   
+            contentContainerStyle={{
+              flex: 1,
+              justifyContent: 'space-between'
+            }} 
+            horizontal>
                 <View style={styles.NavHeader}>
                     <Link to="/" component={TouchableWithoutFeedback}>
-                        <Text>Repositories</Text>
+                        <Text color="textSecondary">Repositories</Text>
                     </Link>                
                 </View>
                 <View style={styles.navItemContainer}>

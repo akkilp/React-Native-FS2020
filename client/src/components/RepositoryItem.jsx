@@ -16,14 +16,14 @@ const styles = StyleSheet.create({
         padding: 20,
         width: 50,
         height: 50,
-        backgroundColor: 'yellow',
         margin: theme.paddings.containerPadding,
     },
     lowerContainer: {
         padding: theme.paddings.containerPadding,
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        padding:20
     },
     language:{
         backgroundColor: theme.colors.effect,
@@ -31,8 +31,7 @@ const styles = StyleSheet.create({
         borderRadius: 5,
     },
     infoItem: {
-        flexGrow: 0,
-        margin: 10
+        marginBottom: 10
     
     },
     infoContainer:{
@@ -40,11 +39,11 @@ const styles = StyleSheet.create({
         alignItems: 'flex-start',
         flexGrow: 1,
         justifyContent: 'space-between',
-        paddingTop: theme.paddings.containerPadding
+        paddingTop: theme.paddings.containerPadding,
     },
     upperContainer:{
         display:'flex',
-        flexDirection: 'row'
+        flexDirection: 'row',
     }
 });
 
@@ -70,9 +69,9 @@ const RepositoryItem = ({data}) => {
             }}
             />
         <View style={styles.infoContainer}>
-            <Text theme={styles.infoItem} fontWeight='bold' fontSize='subheading'>{fullName}</Text>
-            <Text theme={styles.infoItem} color='textSecondary'>{description}</Text>
-            <Text color='textSecondary' theme={styles.infoItem} style={styles.language}>{language}</Text>
+            <Text style={styles.infoItem} fontWeight='bold' fontSize='subheading'>{fullName}</Text>
+            <Text style={styles.infoItem} color='textSecondary'>{description}</Text>
+            <Text color='textSecondary' style={styles.infoItem} style={styles.language}>{language}</Text>
         </View>
       </View>
 

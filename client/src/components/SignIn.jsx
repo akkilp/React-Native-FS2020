@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     marginBottom:0,
     borderStyle: 'solid',
     borderWidth: 1,
-    borderColor: 'gray',
+    borderColor: theme.colors.textSecondary,
     borderRadius: 5
   },
   button: {
@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
     margin: theme.paddings.containerPadding,
     backgroundColor: theme.colors.effect,
     borderRadius: 10,
+    fontSize: '1em',
     color: 'white',
     textAlign: 'center'
   }

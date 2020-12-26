@@ -3,11 +3,11 @@ import {Platform} from 'react-native';
 const theme = {
     colors: {
       textPrimary: '#24292e',
-      textSecondary: 'darkgray',
-      primary: '#0366d6',
-      secondary: 'white',
-      effect: 'blue',
-      body: 'darkgray'
+      textSecondary: 'white',
+      primary: 'black',
+      secondary: 'gray',
+      effect: 'darkorange',
+      body: 'white'
     },
     fontSizes: {
       body: 14,
